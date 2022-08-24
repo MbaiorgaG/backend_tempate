@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/")
 public class AppController {
+    
 
-
-    @GetMapping("/")
-    public ResponseEntity<String> startApp(){
-        return new ResponseEntity<>("Application started fine", HttpStatus.OK);
+    @GetMapping("howold")
+    public ResponseEntity<?> calculateAge(String dob) {
+        return new ResponseEntity<>("User Age", HttpStatus.OK);
     }
+
 }

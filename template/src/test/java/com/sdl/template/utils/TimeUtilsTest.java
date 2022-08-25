@@ -20,4 +20,13 @@ class TimeUtilsTest {
   }
 
 
+  @Test
+  public void validate_timeStamp(){
+    String date = "1990-07-10 13:00:27.16";
+    Timestamp timestamp = Timestamp.valueOf(date);
+    boolean actual = TimeUtils.isTimeStampValid(timestamp);
+    assertEquals(true, actual);
+  }
+
+
 }

@@ -99,3 +99,5 @@ hs_err_pid*
 /.idea/modules.xml
 /.idea/codeStyles/Project.xml
 /.idea/vcs.xml
+/.idea/libraries/Maven__javax_validation_validation_api_2_0_1_Final.xml
+/.idea/uiDesigner.xml

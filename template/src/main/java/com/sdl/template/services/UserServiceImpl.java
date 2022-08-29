@@ -1,5 +1,6 @@
 package com.sdl.template.services;
 
+import com.google.common.util.concurrent.RateLimiter;
 import com.sdl.template.dtos.UserRequest;
 import com.sdl.template.dtos.UserResponse;
 import com.sdl.template.utils.TimeUtils;
@@ -14,6 +15,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public UserResponse calculateAge(UserRequest dob) {
+    var rateLimiter = RateLimiter.class;
     LocalDate localDate = TimeUtils.dateFromTimeStamp(dob.getDob());
     LocalDate currentDate = LocalDate.now();
     int years = Period.between(localDate, currentDate).getYears();

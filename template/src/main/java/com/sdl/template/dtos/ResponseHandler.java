@@ -1,33 +1,50 @@
 package com.sdl.template.dtos;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
+
+@Data
+@JsonInclude(Include.NON_NULL)
 public class ResponseHandler {
-  private ResponseHandler(){
+
+  private HttpStatus status;
+
+  private  boolean error;
+
+  private String message;
+
+  private  Object data;
+
+  public ResponseHandler(HttpStatus status) {
+    this.status = status;
   }
 
-  public static ResponseEntity<Object> apiResponse(HttpStatus status, boolean error,String message, Object responseObj) {
-    Map<String, Object> map = new HashMap<>();
-    try {
-      map.put("timestamp", new Date());
-      map.put("status", status.value());
-      map.put("isSuccess", error);
-      map.put("message", message);
-      map.put("data", responseObj);
-
-      return new ResponseEntity<>(map, status);
-    } catch (Exception e) {
-      map.clear();
-      map.put("timestamp", new Date());
-      map.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
-      map.put("isSuccess", false);
-      map.put("message", e.getMessage());
-      map.put("data", null);
-      return new ResponseEntity<>(map, status);
-    }
+  public ResponseHandler(HttpStatus status, boolean error, String message, Object data) {
+    this.status = status;
+    this.error = error;
+    this.message = message;
+    this.data = data;
   }
+
+  public ResponseHandler(HttpStatus status, String message, Object data) {
+    this.status = status;
+    this.message = message;
+    this.data = data;
+  }
+
+  public ResponseHandler(HttpStatus status, boolean error, Object data) {
+    this.status = status;
+    this.error = error;
+    this.data = data;
+  }
+
+  public ResponseHandler(HttpStatus status, boolean error, String message) {
+    this.status = status;
+    this.error = error;
+    this.message = message;
+  }
+
 }

@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public UserResponse calculateAge(UserRequest dob) {
-    var rateLimiter = RateLimiter.class;
     LocalDate localDate = TimeUtils.dateFromTimeStamp(dob.getDob());
     LocalDate currentDate = LocalDate.now();
     int years = Period.between(localDate, currentDate).getYears();

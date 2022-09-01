@@ -54,6 +54,8 @@ final Logger logger = LoggerFactory.getLogger(getClass());
       return new ResponseHandler(HttpStatus.TOO_MANY_REQUESTS, true, "Only 1 request is allowed in 20 secs");
   }
 
-
-
+  @Override
+  public String toString() {
+    return super.toString();
+  }
 }
